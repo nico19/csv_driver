@@ -7,14 +7,25 @@ using System.Threading.Tasks;
 
 namespace pzas32driver
 {
+    /// <summary>
+    ///  This class implements basic file operations (CRUD). </summary>
     public class FileCommand
     {
+        /// <summary>
+        /// Create new file connection. </summary>
         FileConnection fcon;
+
+        /// <summary>
+        /// The class constructor. </summary>
+        /// <param name="fcon"> File connection </param>
         public FileCommand(FileConnection fcon)
         {
             this.fcon = fcon;
         }
 
+        /// <summary>
+        /// Method that add new row into the file. </summary>
+        /// <param name="row"> Row that will be added to the file </param>
         public void add(Row row)
         {
             try
@@ -32,6 +43,10 @@ namespace pzas32driver
             }
            
         }
+
+        /// <summary>
+        /// Method that add new row into the file. </summary>
+        /// <param name="rows">  </param>
         public void addRows(List<Row> rows)
         {
             this.fcon.Open(FileMode.Append, FileAccess.Write);
@@ -44,6 +59,10 @@ namespace pzas32driver
             }
             this.fcon.Close();
         }
+
+        /// <summary>
+        /// Method that read file. </summary>
+        /// <returns> Return file splited into rows. </returns>
         public FileResultSet read()
         {
             this.fcon.Open(FileMode.Open, FileAccess.Read);
@@ -71,6 +90,10 @@ namespace pzas32driver
             return fset;
         }
 
+        /// <summary>
+        /// Method that delete row from file by row index. </summary>
+        /// <param name="index"> Row index in the file. </param>
+        /// <returns> Return true if row successfully deleted. </returns>
         public bool deleteByIndex(int index)
         {
             if (index > 0)
@@ -92,6 +115,11 @@ namespace pzas32driver
                 throw new Exception("Індекс [" + index + "] повинен бути більшим від 0");
         }
 
+        /// <summary>
+        /// Method that update row in the file. /// </summary>
+        /// <param name="index"> Row index in the file. </param>
+        /// <param name="row"> New row that replace old row in the file. </param>
+        /// <returns> Return true if row successfully deleted. </returns>
         public bool update(int index, Row row)
         {
             if (index > 0)
