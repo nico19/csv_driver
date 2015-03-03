@@ -29,7 +29,7 @@ namespace pzas32driver
         }
 
         /// <summary>
-        /// Method that convertі list of items to string. </summary>
+        /// Method that converts list of items to string. </summary>
         /// <returns> Return result string </returns>
         public override String ToString()   
         {
