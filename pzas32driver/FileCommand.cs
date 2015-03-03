@@ -140,47 +140,45 @@ namespace pzas32driver
                 throw new Exception("Індекс [" + index + "] повинен бути більшим від 0");
         }
     }
-}
-
-public Row ReadByIndex(int index)
-{
-    if (index >= 0)
+    public Row ReadByIndex(int index)
     {
-        this.fcon.Open(FileMode.Open, FileAccess.Read);
-        FileResultSet fset = new FileResultSet();
-        using (StreamReader sr = new StreamReader(fcon.fstream))
+        if (index >= 0)
         {
-            String line = null;
-            while ((line = sr.ReadLine()) != null)
+            this.fcon.Open(FileMode.Open, FileAccess.Read);
+            FileResultSet fset = new FileResultSet();
+            using (StreamReader sr = new StreamReader(fcon.fstream))
             {
-                String[] tempCols = line.Split(',');
-                List<String> cols = new List<String>();
-                foreach (String col in tempCols)
+                String line = null;
+                while ((line = sr.ReadLine()) != null)
                 {
-                    cols.Add(col);
+                    String[] tempCols = line.Split(',');
+                    List<String> cols = new List<String>();
+                    foreach (String col in tempCols)
+                    {
+                        cols.Add(col);
+                    }
+                    Row row = new Row(cols);
+                    if (row != null)
+                    {
+                        fset.addRow(row);
+                    }
                 }
-                Row row = new Row(cols);
-                if (row != null)
-                {
-                    fset.addRow(row);
-                }
-
             }
+            this.fcon.Close();
+            return fset.getRow(index);
         }
-        this.fcon.Close();
-        return fset.getRow(index);
+        else
+        {
+            throw new Exception("Індекс [" + index + "] не повинен бути від'ємним");
+        }
     }
-    else
+
+    public void Delete()
     {
-        throw new Exception("Індекс [" + index + "] не повинен бути від'ємним");
+        Row temp = ReadByIndex(0);
+        fcon.Open(FileMode.Truncate, FileAccess.Write);
+        fcon.Close();
+        add(temp);
     }
-}
-
-
-public void Delete()
-{
-    Row temp = ReadByIndex(0);
-    fcon.Open(FileMode.Truncate, FileAccess.Write);
-    fcon.Close();
-    add(temp);
+    
 }
