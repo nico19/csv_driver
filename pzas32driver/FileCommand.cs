@@ -26,9 +26,9 @@ namespace pzas32driver
                 }
                 this.fcon.Close();
             }
-            catch //(Exception e) Error solution
+            catch (Exception e) 
             {
-                Console.WriteLine("There was an error reading file, please try later");
+                Console.WriteLine("Exception : " + e.Message);
             }
            
         }
