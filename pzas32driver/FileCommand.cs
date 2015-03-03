@@ -24,6 +24,18 @@ namespace pzas32driver
             }
             this.fcon.Close();
         }
+        public void addRows(List<Row> rows)
+        {
+            this.fcon.Open(FileMode.Append, FileAccess.Write);
+            using (StreamWriter sw = new StreamWriter(fcon.fstream))
+            {
+                foreach (Row row in rows)
+                {
+                    sw.WriteLine(row.ToString());
+                }
+            }
+            this.fcon.Close();
+        }
         public FileResultSet read()
         {
             this.fcon.Open(FileMode.Open, FileAccess.Read);
@@ -49,6 +61,47 @@ namespace pzas32driver
             }
             this.fcon.Close();
             return fset;
+        }
+
+        public bool deleteByIndex(int index)
+        {
+            if (index > 0)
+            {
+                FileResultSet fset = this.read();
+                if (fset.lastIndex() >= index)
+                {
+                    fset.removeByIndex(index);
+                    fcon.Open(FileMode.Truncate, FileAccess.Write);
+                    fcon.Close();
+                    this.addRows(fset.getRows());
+                    return true;
+                }
+                else
+                    throw new Exception("В колекції не існує елемента з індексом " + index);
+                
+            }
+            else
+                throw new Exception("Індекс [" + index + "] повинен бути більшим від 0");
+        }
+
+        public bool update(int index, Row row)
+        {
+            if (index > 0)
+            {
+                FileResultSet fset = this.read();
+                if (fset.lastIndex() >= index)
+                {
+                    fset.update(index, row);
+                    fcon.Open(FileMode.Truncate, FileAccess.Write);
+                    fcon.Close();
+                    this.addRows(fset.getRows());
+                    return true;
+                }
+                else
+                    throw new Exception("В колекції не існує елемента з індексом " + index);
+            }
+            else
+                throw new Exception("Індекс [" + index + "] повинен бути більшим від 0");
         }
     }
 }

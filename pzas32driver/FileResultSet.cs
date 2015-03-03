@@ -13,6 +13,10 @@ namespace pzas32driver
         {
             return this.rows[index];
         }
+        public List<Row> getRows()
+        {
+            return this.rows;
+        }
         public void addRow(Row row)
         {
             this.rows.Add(row);
@@ -20,6 +24,18 @@ namespace pzas32driver
         public int count()
         {
             return this.rows.Count;
+        }
+        public int lastIndex()
+        {
+            return this.count() - 1;
+        }
+        public void removeByIndex(int index)
+        {
+            this.rows.RemoveAt(index);
+        }
+        public void update(int index, Row row)
+        {
+            rows[index] = row;
         }
     }
 }

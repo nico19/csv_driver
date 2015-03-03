@@ -20,10 +20,13 @@ namespace pzas32driver
         public String ToString()
         {
             String res = "";
+            int i = 0;
             this.cols.ForEach(delegate(String col)
             {
                 res += col;
-                res += ",";
+                if(i != cols.Count - 1)
+                    res += ",";
+                i++;
             });
             
             return res;

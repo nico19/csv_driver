@@ -13,14 +13,17 @@ namespace test1
             FileConnection fcon = new FileConnection(@"E:\1.csv");
             FileCommand fcom = new FileCommand(fcon);
             List<String> list = new List<String>();
-            list.Add("nico");
-            list.Add("");
-            list.Add("7889441");
-            
-            //fcom.add(new Row(list));
-            FileResultSet fset = fcom.read();
-            Console.WriteLine("Count {0}", fset.count());
-            Console.ReadLine();
+
+            list.Add("serhiy");
+            list.Add("098");
+            list.Add("6435541");
+            //Row row = new Row(list);
+            //fcom.update(8, row);
+            fcom.add(new Row(list));
+            //FileResultSet fset = fcom.read();
+           
+            //Console.WriteLine("Count {0}", fset.count());
+            //Console.ReadLine();
         }
     }
 }
