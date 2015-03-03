@@ -141,3 +141,46 @@ namespace pzas32driver
         }
     }
 }
+
+public Row ReadByIndex(int index)
+{
+    if (index >= 0)
+    {
+        this.fcon.Open(FileMode.Open, FileAccess.Read);
+        FileResultSet fset = new FileResultSet();
+        using (StreamReader sr = new StreamReader(fcon.fstream))
+        {
+            String line = null;
+            while ((line = sr.ReadLine()) != null)
+            {
+                String[] tempCols = line.Split(',');
+                List<String> cols = new List<String>();
+                foreach (String col in tempCols)
+                {
+                    cols.Add(col);
+                }
+                Row row = new Row(cols);
+                if (row != null)
+                {
+                    fset.addRow(row);
+                }
+
+            }
+        }
+        this.fcon.Close();
+        return fset.getRow(index);
+    }
+    else
+    {
+        throw new Exception("Індекс [" + index + "] не повинен бути від'ємним");
+    }
+}
+
+
+public void Delete()
+{
+    Row temp = ReadByIndex(0);
+    fcon.Open(FileMode.Truncate, FileAccess.Write);
+    fcon.Close();
+    add(temp);
+}
