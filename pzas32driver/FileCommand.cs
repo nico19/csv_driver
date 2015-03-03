@@ -17,12 +17,20 @@ namespace pzas32driver
 
         public void add(Row row)
         {
-            this.fcon.Open(FileMode.Append, FileAccess.Write);
-            using (StreamWriter sw = new StreamWriter(fcon.fstream))
+            try
             {
-                sw.WriteLine(row.ToString());
+                this.fcon.Open(FileMode.Append, FileAccess.Write);
+                using (StreamWriter sw = new StreamWriter(fcon.fstream))
+                {
+                    sw.WriteLine(row.ToString());
+                }
+                this.fcon.Close();
             }
-            this.fcon.Close();
+            catch (Exception e)
+            {
+                Console.WriteLine("There was an error reading file, please try later");
+            }
+           
         }
         public void addRows(List<Row> rows)
         {
