@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace pzas32driver
 {
     /// <summary>
-    /// Describe element of data model. /// </summary>
+    /// Describes element of data model. /// </summary>
     public class Row
     {
         List<String> cols;
 
         /// <summary>
         /// The class constructor. </summary>
-        /// <param name="cols"> List of type string items. </param>
+        /// <param name="cols"> List of string type items. </param>
         public Row(List<String> cols)
         {
             this.cols = cols;
@@ -22,14 +22,14 @@ namespace pzas32driver
 
         /// <summary>
         /// Method to get column. </summary>
-        /// <returns> Return list of type string items</returns>
+        /// <returns> Return list of string types items</returns>
         public List<String> getCols()
         {
             return this.cols;
         }
 
         /// <summary>
-        /// Method that convert list items to string. </summary>
+        /// Method that converts list of items to string. </summary>
         /// <returns> Return result string </returns>
         public override String ToString()   
         {

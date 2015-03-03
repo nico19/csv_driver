@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 namespace pzas32driver
 {
     /// <summary>
-    /// This class contain file splited into rows. /// </summary>
+    /// This class contains the file splitted into rows. /// </summary>
     public class FileResultSet
     {
         /// <summary>
-        /// Create list of type Row items. /// </summary>
+        /// Create list of Row type items. /// </summary>
         List<Row> rows = new List<Row>();
 
         /// <summary>
-        /// Method that get rows index. /// </summary>
+        /// Method that gets rows index. /// </summary>
         /// <param name="index"> Index of item in row-type list. </param>
         /// <returns> Return number of row position. </returns>
         public Row getRow(int index)
@@ -24,7 +24,7 @@ namespace pzas32driver
         }
 
         /// <summary>
-        /// Method that get rows list. /// </summary>
+        /// Method that gets rows list. /// </summary>
         /// <returns> Return rows list. </returns>
         public List<Row> getRows()
         {
@@ -32,15 +32,15 @@ namespace pzas32driver
         }
 
         /// <summary>
-        /// Method that add new row to rows collection. /// </summary>
-        /// <param name="row"> Row that be added to row collection. </param>
+        /// Method that add a new row to the rows collection. /// </summary>
+        /// <param name="row"> Row that will be added to the row collection. </param>
         public void addRow(Row row)
         {
             this.rows.Add(row);
         }
 
         /// <summary>
-        /// Method that return count of rows in collection. /// </summary>
+        /// Method that returns count of rows in collection. /// </summary>
         /// <returns> Return count of rows in collection. </returns>
         public int count()
         {
@@ -48,7 +48,7 @@ namespace pzas32driver
         }
 
         /// <summary>
-        /// Method that return index of last item in collection. /// </summary>
+        /// Method that returns index of last item in collection. /// </summary>
         /// <returns> Return index of last item in collection. </returns>
         public int lastIndex()
         {
