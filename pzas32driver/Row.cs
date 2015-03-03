@@ -31,7 +31,7 @@ namespace pzas32driver
         /// <summary>
         /// Method that convert list items to string. </summary>
         /// <returns> Return result string </returns>
-        public String ToString()
+        public override String ToString()   
         {
             String res = "";
             int i = 0;
