@@ -32,7 +32,7 @@ namespace pzas32driver
         }
 
         /// <summary>
-        /// Method that add new row to the rows collection. /// </summary>
+        /// Method that add a new row to the rows collection. /// </summary>
         /// <param name="row"> Row that will be added to the row collection. </param>
         public void addRow(Row row)
         {
@@ -48,7 +48,7 @@ namespace pzas32driver
         }
 
         /// <summary>
-        /// Method that return index of last item in collection. /// </summary>
+        /// Method that returns index of last item in collection. /// </summary>
         /// <returns> Return index of last item in collection. </returns>
         public int lastIndex()
         {
